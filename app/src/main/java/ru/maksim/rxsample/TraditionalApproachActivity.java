@@ -31,37 +31,43 @@ public class TraditionalApproachActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Log.d(TAG, "afterTextChanged");
+                if (editable.length() > 0) {
+                    Log.d(TAG, "afterTextChanged requesting");
+                    requestData(editText);
+                } else {
+                    Log.d(TAG, "afterTextChanged - nothing to request");
+                }
             }
         });
-        findViewById(R.id.btn).setOnClickListener(view -> {
-            String request = editText.getText().toString();
-            NetworkProvider networkProvider = new NetworkProvider();
-            networkProvider.requestData(request, new NetworkProvider.DataListener() {
-                @Override
-                public void onDataRequested(String data) {
-                    Log.d(TAG, "networkProvider onDataRequested data: " + data);
-                }
+        findViewById(R.id.btn).setOnClickListener(view -> requestData(editText));
+    }
 
-                @Override
-                public void onError() {
-                    Log.d(TAG, "networkProvider onError");
-                    LocalCacheProvider localCacheProvider = new LocalCacheProvider();
-                    new Thread(() -> {
-                        String localCacheResponse = localCacheProvider.getLocalData(request,
-                                                                          ((RadioButton) findViewById(
-                                                                                  R.id.local_cache)).isChecked()
-                        );
-                        if (localCacheResponse == null) {
-                            Snackbar.make(findViewById(R.id.container), "Failed to get data", Snackbar.LENGTH_SHORT).show();
-                        } else {
-                            Log.d(TAG, "localCacheProvider response: " + localCacheResponse);
-                        }
+    private void requestData(EditText editText) {
+        String request = editText.getText().toString();
+        NetworkProvider networkProvider = new NetworkProvider();
+        networkProvider.requestData(request, new NetworkProvider.DataListener() {
+            @Override
+            public void onDataRequested(String data) {
+                Log.d(TAG, "networkProvider onDataRequested data: " + data);
+            }
 
-                    }).start();
-                }
-            }, ((RadioButton) findViewById(R.id.network)).isChecked());
+            @Override
+            public void onError() {
+                Log.d(TAG, "networkProvider onError");
+                LocalCacheProvider localCacheProvider = new LocalCacheProvider();
+                new Thread(() -> {
+                    String localCacheResponse = localCacheProvider.getLocalData(request,
+                                                                      ((RadioButton) findViewById(
+                                                                              R.id.local_cache)).isChecked()
+                    );
+                    if (localCacheResponse == null) {
+                        Snackbar.make(findViewById(R.id.container), "Failed to get data", Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Log.d(TAG, "localCacheProvider response: " + localCacheResponse);
+                    }
 
-        });
+                }).start();
+            }
+        }, ((RadioButton) findViewById(R.id.network)).isChecked());
     }
 }
