@@ -8,7 +8,7 @@ public class LocalCacheProvider {
 
     public String getLocalData(String request, boolean successEmulation) {
         try {
-            Thread.sleep(2000L);
+            Thread.sleep(MainActivity.DELAY);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

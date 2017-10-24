@@ -9,7 +9,7 @@ public class NetworkProvider {
     public void requestData(String request, DataListener dataListener, boolean successEmulation) {
         new Thread(() -> {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(MainActivity.DELAY);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {

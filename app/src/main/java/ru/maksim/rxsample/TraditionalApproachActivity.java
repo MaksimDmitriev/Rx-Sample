@@ -13,6 +13,20 @@ public class TraditionalApproachActivity extends AppCompatActivity {
 
     private static final String TAG = "TraditionalApproach";
 
+    /*
+        What's wrong with the code below?
+        1. NetworkProvider.DataListener has an implicit reference to this activity > memory leak
+        2. When a config change occurs in the middle of the request, MainActivity is re-created,
+        and a new text watcher is added to the editText. Then beforeTextChanged, onTextChanged,
+        and afterTextChanged are called. Which means a new data request.
+        We finally get two responses (from the state before and after the config change)
+
+
+
+        local data retrieval
+        3.
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
