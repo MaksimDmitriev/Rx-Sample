@@ -3,6 +3,8 @@ package ru.maksim.rxsample;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -16,6 +18,22 @@ public class TraditionalApproachActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traditional_approach);
         EditText editText = findViewById(R.id.editText);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "beforeTextChanged");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "onTextChanged");
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d(TAG, "afterTextChanged");
+            }
+        });
         findViewById(R.id.btn).setOnClickListener(view -> {
             String request = editText.getText().toString();
             NetworkProvider networkProvider = new NetworkProvider();
