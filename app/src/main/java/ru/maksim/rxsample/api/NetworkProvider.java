@@ -1,8 +1,6 @@
-package ru.maksim.rxsample;
+package ru.maksim.rxsample.api;
 
-/**
- * Created by maksim on 17.10.17.
- */
+import ru.maksim.rxsample.MainActivity;
 
 public class NetworkProvider {
 
@@ -13,20 +11,18 @@ public class NetworkProvider {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                if (successEmulation) {
-                    dataListener.onDataRequested(request + " - new data from the network");
-                } else {
-                    dataListener.onError();
+                if (dataListener != null) {
+                    if (successEmulation) {
+                        dataListener.onDataRequested(request + " - new data from the network");
+                    } else {
+                        dataListener.onError();
+                    }
                 }
             }
         }).start();
     }
 
-    /**
-     * Created by maksim on 17.10.17.
-     */
-
-    interface DataListener {
+    public interface DataListener {
 
         void onDataRequested(String data);
 

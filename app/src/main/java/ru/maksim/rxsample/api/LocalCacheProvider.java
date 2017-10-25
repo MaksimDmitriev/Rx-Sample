@@ -1,4 +1,6 @@
-package ru.maksim.rxsample;
+package ru.maksim.rxsample.api;
+
+import ru.maksim.rxsample.MainActivity;
 
 /**
  * Created by maksim on 17.10.17.

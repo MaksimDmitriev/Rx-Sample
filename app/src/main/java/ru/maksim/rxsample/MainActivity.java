@@ -8,7 +8,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final long DELAY = 6000L;
+    public static final long DELAY = 10_000L;
     /*
        go to the network.
        if there is a response from the network, show it to the user.
