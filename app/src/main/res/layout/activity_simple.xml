@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/trad_approach"
+        android:id="@+id/get_data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="tradApproach"
-        android:text="Trad. approach"
+        android:text="Get data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/rx_approach"
+    <TextView
+        android:id="@+id/response_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="rxApproach"
-        android:text="Rx"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trad_approach" />
-
-    <Button
-        android:id="@+id/simple"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:onClick="startSimple"
-        android:text="Simple"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rx_approach" />
+        app:layout_constraintTop_toBottomOf="@id/get_data"
+        tools:text="Response" />
 
 </android.support.constraint.ConstraintLayout>

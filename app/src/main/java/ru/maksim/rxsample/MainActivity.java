@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void startSimple(View view) {
+        startActivity(new Intent(this, SimpleActivity.class));
+    }
+
     public void tradApproach(View view) {
         startActivity(new Intent(this, TraditionalApproachActivity.class));
     }
